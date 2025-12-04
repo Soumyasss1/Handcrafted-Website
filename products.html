@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products - HandCrafted</title>
+  <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">HandCrafted❤</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html" >About Us</a></li>
+    </ul>
+  </nav>
+
+  <h2 class="title">Our Handmade Products</h2>
+
+  <!-- STATIC PRODUCTS + BACKEND PRODUCTS WILL COME HERE -->
+  <div class="product-container" id="productContainer">
+
+    <!-- Static product example -->
+    <div class="product-card">
+      <img src="pics/handbag.jpg" alt="Handmade Bag">
+      <h3>Handmade Jute Bag</h3>
+      <p class="price">₹899</p>
+      <p>Eco-friendly jute bag perfect for daily use.</p>
+      <button onclick="addToCart('static1')">Add to Cart</button>
+      <button onclick="buyNow('static1')">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="pics/earrings.jpg" alt="Handmade Earrings">
+      <h3>Terracotta Earrings</h3>
+      <p class="price">₹199</p>
+      <p>Beautiful handcrafted terracotta earrings.</p>
+      <button onclick="addToCart('static')">Add to Cart</button>
+      <button onclick="buyNow('static')">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="pics/candle.jpg" alt="Handmade Bag">
+      <h3>Handmade Jute Bag</h3>
+      <p class="price">₹899</p>
+      <p>Eco-friendly jute bag perfect for daily use.</p>
+      <button onclick="addToCart('static')">Add to Cart</button>
+      <button onclick="buyNow('static')">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="pics/pillow.jpg" alt="Handmade Bag">
+      <h3>Handmade Jute Bag</h3>
+      <p class="price">₹899</p>
+      <p>Eco-friendly jute bag perfect for daily use.</p>
+      <button onclick="addToCart('static')">Add to Cart</button>
+      <button onclick="buyNow('static')">Buy Now</button>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById("productContainer");
+
+    // LOAD PRODUCTS FROM BACKEND
+    fetch("http://localhost:3000/api/products")
+      .then(res => res.json())
+      .then(products => {
+        products.forEach(product => {
+          container.innerHTML += `
+            <div class="product-card">
+              <img src="${product.image || 'pics/default.jpg'}" alt="Product Image">
+
+              <h3>${product.name}</h3>
+              <p class="price">₹${product.price}</p>
+              <p>${product.description}</p>
+
+              <button onclick="addToCart('${product._id}')">Add to Cart</button>
+              <button onclick="buyNow('${product._id}')">Buy Now</button>
+            </div>
+          `;
+        });
+      });
+
+    // ADD TO CART
+    function addToCart(id) {
+      if (!localStorage.getItem("token")) {
+        alert("Please login to add items to cart.");
+        window.location.href = "login.html";
+        return;
+      }
+      alert("Item added to cart!");
+    }
+
+    // BUY NOW
+    function buyNow(id) {
+      if (!localStorage.getItem("token")) {
+        alert("Please login to buy products.");
+        window.location.href = "login.html";
+        return;
+      }
+      alert("Proceeding to checkout...");
+    }
+  </script>
+
+</body>
+</html>

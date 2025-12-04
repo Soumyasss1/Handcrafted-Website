@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="register.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+<nav>
+  <div class="logo">HandCrafted❤</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="register.html" id="reg">Register</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+  </ul>
+</nav>
+
+  <h2>Register</h2>
+
+  <form id="registerForm">
+    <input type="text" id="name" placeholder="Name" required><br><br>
+    <input type="email" id="email" placeholder="Email" required><br><br>
+    <input type="password" id="password" placeholder="Password" required><br><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:3000/api/users/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await res.json();
+
+    if (res.ok) {
+        alert("User registered! Redirecting to login...");
+        window.location.href = "login.html"; // redirect automatically
+      } else {
+        alert(data.message || "Registration failed!");
+      }
+    } catch (err) {
+      alert("Server error!");
+      console.error(err);
+    }
+  });
+
+  </script>
+</body>
+</html>

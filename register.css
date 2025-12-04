@@ -1,0 +1,90 @@
+/* Remove browser default spacing */
+body {
+  margin: 0;
+  padding: 0;
+  background-color:indigo;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading should stick to the top */
+h2 {
+  margin-top: 20px; 
+  text-align: center;
+  color:aquamarine;
+}
+
+/* Center the form on the page */
+form {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  width: 300px;
+  text-align: center;
+
+  /* This is the MAIN FIX */
+  margin: 20px auto;   /* centers form AND adds gap from top */
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #222;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li #reg {
+  color: #00ff99;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff99;
+}
+

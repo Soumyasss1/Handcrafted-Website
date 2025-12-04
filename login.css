@@ -1,0 +1,89 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+  background-color:indigo;
+}
+
+
+h2 {
+  margin-top: 20px; 
+  text-align: center;
+  color:aquamarine;
+}
+
+form {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  width: 300px;
+  text-align: center;
+
+  
+  margin: 20px auto;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #007bff; /* blue focus color for login */
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  background-color: #007bff; /* blue login button */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #222;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li #log {
+  color: #00ff99;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff99;
+}

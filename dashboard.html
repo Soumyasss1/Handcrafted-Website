@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+  <h2>Dashboard</h2>
+  <div id="userInfo"></div>
+  <button id="logoutBtn">Logout</button>
+  <button id="logoutBtn">Logout</button>
+
+  <script>
+   async function loadProfile() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Not logged in! Redirecting to login...");
+    window.location.href = "login.html"; // redirect if no token
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/users/profile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // send token
+      }
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      //  Here: token is valid, display user info
+      document.getElementById("userInfo").innerHTML = `
+        <p>Name: ${data.name}</p>
+        <p>Email: ${data.email}</p>
+      `;
+    } else {
+      alert(data.message || "Failed to load profile");
+      window.location.href = "login.html"; // redirect if token invalid
+    }
+  } catch (err) {
+    alert("Server error!");
+    console.error(err);
+  }
+}
+ 
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userEmail");
+
+      alert("Logged out! Redirecting to login...");
+      window.location.href = "login.html";
+    });
+
+    loadProfile();
+  </script>
+</body>
+</html>

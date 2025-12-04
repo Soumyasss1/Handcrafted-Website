@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - HandCrafted</title>
+  <link rel="stylesheet" href="contact.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">HandCrafted❤</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTACT SECTION -->
+  <div class="contact-wrapper">
+
+    <div class="left-box">
+      <h2>Contact Us</h2>
+      <p>We’d love to hear from you! Reach out anytime.</p>
+
+      <div class="details">
+        <h3>Our Details</h3>
+
+        <p><strong>Email:</strong> handcrafted@gmail.com</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Location:</strong> New Delhi, India</p>
+
+        <h4>Follow us</h4>
+        <p>Instagram | Facebook | YouTube</p>
+      </div>
+    </div>
+
+    <div class="right-box">
+      <h3>Send us a Message</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Subject" required />
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = form[0].value;
+  const email = form[1].value;
+  const subject = form[2].value;
+  const message = form[3].value;
+
+  try {
+    const res = await fetch("http://localhost:3000/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, subject, message })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Message sent successfully!");
+      form.reset();
+    } else {
+      alert("Failed to send message!");
+    }
+
+  } catch (error) {
+    alert("Server error!");
+    console.error(error);
+  }
+});
+</script>
+
+</html>
